@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>  
+<title>Water Quality</title>  
+<!-- BootStrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" 
+      crossorigin="anonymous">
+<style>
+input {
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    padding-top: 0px;
+    margin-bottom: 10px;
+}
+.form-group {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+h1#heading {
+    font-weight: bold;
+}
+.blink {
+    animation: blink-animation 1s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+</style>
+</head>
+
+<body style="background-color:rgb(172, 194, 255);">
+<div class="login">
+    <form action="{{ url_for('predict')}}" method="post">
+        <center>
+            <h1 style="font-size:60px;" id="heading">Water Quality Prediction</h1><br><br>
+        </center>
+        {% if prediction_text %}
+        <center style="background-color: {{ bg_color }};">
+            <h1 class="blink">{{ prediction_text }}</h1>
+        </center><br><br>
+        {% endif %}
+        <center>
+            <h3 style="color:black;">Enter Value</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="ph">pH value:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="ph" name="ph" placeholder="pH value" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Hardness">Hardness:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Hardness" name="Hardness" placeholder="Hardness" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Solids">Solids:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Solids" name="Solids" placeholder="Solids" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Sulfate">Sulfate:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Sulfate" name="Sulfate" placeholder="Sulfate" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Organic_carbon">Organic carbon:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Organic_carbon" name="Organic_carbon" placeholder="Organic carbon" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Chloramines">Chloramines:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Chloramines" name="Chloramines" placeholder="Chloramines" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Conductivity">Conductivity:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Conductivity" name="Conductivity" placeholder="Conductivity" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Trihalomethanes">Trihalomethanes:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Trihalomethanes" name="Trihalomethanes" placeholder="Trihalomethanes" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="Turbidity">Turbidity:</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" id="Turbidity" name="Turbidity" placeholder="Turbidity" style="background-color:#DCDCDC;" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Place the button below the two columns -->
+                <div class="form-group">
+                    <center>
+                        <button type="submit" class="btn btn-primary btn-block btn-large"><strong>Enter</strong></button>
+                    </center>
+                </div>
+            </div>
+        </center>
+    </form>
+</div>
+</body>
+</html>
